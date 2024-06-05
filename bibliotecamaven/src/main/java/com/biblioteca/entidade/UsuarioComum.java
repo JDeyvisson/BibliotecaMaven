@@ -2,8 +2,11 @@ package com.biblioteca.entidade;
 
 import javax.persistence.Entity;
 
+
 @Entity
 public class UsuarioComum extends Usuario {
+
+
 
     public UsuarioComum() {
     }
@@ -12,17 +15,7 @@ public class UsuarioComum extends Usuario {
         super(login, senha);
     }
 
-    public void consultarCatalogo(Biblioteca biblioteca) {
-        biblioteca.listarLivros();
-    }
-
-    public void fazerEmprestimo(Biblioteca biblioteca, String titulo) {
-        biblioteca.emprestarLivro(this, titulo);
-    }
-
-    public void fazerReserva(Biblioteca biblioteca, String titulo) {
-        biblioteca.reservarLivro(this, titulo);
-    }
+   
 
     @Override
     public void menu() {

@@ -21,8 +21,11 @@ public class Reserva {
 
     private LocalDate dataReserva;
 
-    public Reserva() {
+    public Reserva(UsuarioComum usuario, Livro livro) {
         this.dataReserva = LocalDate.now();
+        this.usuario = usuario;
+        this.livro = livro;
+
     }
 
     public Long getId() {

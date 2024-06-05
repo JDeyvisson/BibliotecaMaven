@@ -1,12 +1,16 @@
 package com.biblioteca.entidade;
 
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+
 @Entity
 public class Livro {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,10 +21,12 @@ public class Livro {
     public Livro() {
     }
 
+
     public Livro(String titulo, String autor) {
         this.titulo = titulo;
         this.autor = autor;
         this.disponivel = true;
+    
     }
 
     public Long getId() {

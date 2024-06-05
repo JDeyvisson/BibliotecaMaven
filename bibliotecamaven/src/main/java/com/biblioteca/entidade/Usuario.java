@@ -49,8 +49,6 @@ public abstract class Usuario {
         return this.senha.equals(senha);
     }
 
-    public abstract void menu();
-
     @Override
     public String toString() {
         return "Usuario{" +
@@ -59,4 +57,6 @@ public abstract class Usuario {
                 ", senha='" + senha + '\'' +
                 '}';
     }
+
+    public abstract void menu();
 }
