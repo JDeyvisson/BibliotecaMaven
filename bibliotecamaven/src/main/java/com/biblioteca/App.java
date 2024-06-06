@@ -57,8 +57,8 @@ public class App {
                 Gerente gerente = (Gerente) usuarioLogado;
                 switch (opcao) {
                     case 1:
-                        List<Biblioteca> biblioteca = rBiblioteca.listarBibliotecas();
-                        if (biblioteca != null) {
+                       Boolean existeB = rBiblioteca.existemBibliotecas();
+                        if (existeB == true) {
                             System.out.println("Nome da Biblioteca em que o Livro será criado: ");
                             String biblioteca2 = scanner.nextLine();
                             Biblioteca biblioteca3 = rBiblioteca.buscarBiblioteca(biblioteca2);

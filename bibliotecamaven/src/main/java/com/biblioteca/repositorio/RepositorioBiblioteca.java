@@ -48,6 +48,10 @@ public class RepositorioBiblioteca {
         return bibliotecas;
     }
 
+    public boolean existemBibliotecas() {
+        List<Biblioteca> bibliotecas = listarBibliotecas();
+        return !bibliotecas.isEmpty();
+    }
    
     /* 
     public void removerBiblioteca(String nome){
