@@ -11,8 +11,8 @@ public class UsuarioComum extends Usuario {
     public UsuarioComum() {
     }
 
-    public UsuarioComum(String login, String senha) {
-        super(login, senha);
+    public UsuarioComum(String nome, String cpf, String sexo, String login, String senha) {
+        super(nome, cpf, sexo, login, senha);
     }
 
    

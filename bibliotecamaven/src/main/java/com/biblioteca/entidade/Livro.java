@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 
 @Entity
@@ -17,10 +19,21 @@ public class Livro {
     private String titulo;
     private String autor;
     private boolean disponivel;
+    private String etiqueta;
+    @ManyToOne
+    @JoinColumn(name = "biblioteca_id")
+    private Biblioteca biblioteca;
 
     public Livro() {
     }
 
+    public Livro(String titulo, String autor, Biblioteca biblioteca) {
+        this.titulo = titulo;
+        this.autor = autor;
+        this.biblioteca = biblioteca;
+        this.disponivel = true;
+    
+    }
 
     public Livro(String titulo, String autor) {
         this.titulo = titulo;
@@ -69,5 +82,25 @@ public class Livro {
                 ", autor='" + autor + '\'' +
                 ", disponivel=" + disponivel +
                 '}';
+    }
+
+
+    public String getEtiqueta() {
+        return etiqueta;
+    }
+
+
+    public void setEtiqueta(String etiqueta) {
+        this.etiqueta = etiqueta;
+    }
+
+
+    public Biblioteca getBiblioteca() {
+        return biblioteca;
+    }
+
+
+    public void setBiblioteca(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;
     }
 }

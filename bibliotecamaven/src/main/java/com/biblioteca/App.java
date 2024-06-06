@@ -5,12 +5,16 @@ package com.biblioteca;
 
 
 
+import java.util.List;
 import java.util.Scanner;
+import java.util.function.BiConsumer;
 
-
+import com.biblioteca.entidade.Biblioteca;
 import com.biblioteca.entidade.Gerente;
+import com.biblioteca.entidade.Livro;
 import com.biblioteca.entidade.Usuario;
 import com.biblioteca.entidade.UsuarioComum;
+import com.biblioteca.repositorio.RepositorioBiblioteca;
 import com.biblioteca.repositorio.RepositorioEmprestimo;
 import com.biblioteca.repositorio.RepositorioLivro;
 import com.biblioteca.repositorio.RepositorioReserva;
@@ -29,8 +33,10 @@ public class App {
     private RepositorioEmprestimo rEmprestimo;
     private RepositorioUsuario rUsuario;
     private RepositorioReserva rReserva;
+    private RepositorioBiblioteca rBiblioteca;
 
     public App(){
+        rBiblioteca = new RepositorioBiblioteca();
         rLivro = new RepositorioLivro();
         sLivro = new ServicoLivro();
         sEmprestimo = new ServicoEmprestimo();
@@ -51,15 +57,26 @@ public class App {
                 Gerente gerente = (Gerente) usuarioLogado;
                 switch (opcao) {
                     case 1:
-                        System.out.println("Título do Livro: ");
-                        String titulo = scanner.nextLine();
-                        System.out.println("Autor do Livro: ");
-                        String autor = scanner.nextLine();
-                        sLivro.adicionarLivro(rLivro, titulo, autor);
-                        break;
+                        List<Biblioteca> biblioteca = rBiblioteca.listarBibliotecas();
+                        if (biblioteca != null) {
+                            System.out.println("Nome da Biblioteca em que o Livro será criado: ");
+                            String biblioteca2 = scanner.nextLine();
+                            Biblioteca biblioteca3 = rBiblioteca.buscarBiblioteca(biblioteca2);
+                            System.out.println("Título do Livro: ");
+                            String titulo = scanner.nextLine();
+                            System.out.println("Autor do Livro: ");
+                            String autor = scanner.nextLine();
+                            sLivro.adicionarLivro(rLivro, titulo, autor, biblioteca3);
+
+                            break;                                           
+                        }else{
+                            System.out.println("É preciso ter Bibliotecas antes de adicionar Livros!");
+                            break;
+                        }
+                        
                     case 2:
                         System.out.println("Título do Livro a remover: ");
-                        titulo = scanner.nextLine();
+                        String titulo = scanner.nextLine();
                         sLivro.removerLivro(rLivro, titulo);
                         break;
                     case 3:
@@ -71,6 +88,43 @@ public class App {
                         sEmprestimo.cancelarEmprestimo(rEmprestimo, titulo);
                         break;
                     case 5:
+                        sLivro.consultarCatalogo(rLivro);
+                        System.out.println("Digite um Id de livro para adicionar etiqueta: ");
+                        Long id = scanner.nextLong();
+                        Livro livro1 = rLivro.buscarLivro(id);
+                        scanner.nextLine();
+                        if (livro1 != null) {
+                            System.out.println("Digite a etiqueta: ");
+                            String etiqueta = scanner.nextLine();
+                            rLivro.adicionarEtiqueta(etiqueta, id);
+                            break;
+                        }else{
+                            System.out.println("Id invalido");
+                            break;
+                        }
+                    case 6:
+                        sLivro.consultarCatalogo(rLivro);
+                        System.out.println("Digite um Id de livro para remover etiqueta");
+                        Long id1 = scanner.nextLong();
+                        Livro livro2 = rLivro.buscarLivro(id1);
+                        if (livro2 != null) {
+                            rLivro.removerEtiqueta(id1);
+                            break;
+                        }else{
+                            System.out.println("Id invalido");
+                            break;
+                        }
+                    case 7:
+                        System.out.println("Nome da biblioteca: ");
+                        String nome = scanner.nextLine();
+                        rBiblioteca.adicionarBiblioteca(nome);
+                        break;
+                    case 8:
+                        System.out.println("Nome da biblioteca que deseja remover: ");
+                        String nome1 = scanner.nextLine();
+                        rBiblioteca.removerBiblioteca(nome1);
+                        break;
+                    case 9:
                         System.out.println("Saindo...");
                         return;
                     default:
@@ -109,6 +163,12 @@ public class App {
         int escolha = scanner.nextInt();
         scanner.nextLine(); // Consumir nova linha
 
+        System.out.println("Nome: ");
+        String nome = scanner.nextLine();
+        System.out.println("CPF: ");
+        String CPF = scanner.nextLine();
+        System.out.println("Sexo: ");
+        String sexo = scanner.nextLine();
         System.out.println("Login: ");
         String login = scanner.nextLine();
         System.out.println("Senha: ");
@@ -116,9 +176,9 @@ public class App {
 
         Usuario novoUsuario;
         if (escolha == 1) {
-            novoUsuario = new Gerente(login, senha);
+            novoUsuario = new Gerente(nome, CPF, sexo, login, senha);
         } else if (escolha == 2) {
-            novoUsuario = new UsuarioComum(login, senha);
+            novoUsuario = new UsuarioComum(nome, CPF, sexo, login, senha);
         } else {
             System.out.println("Opção inválida. Voltando ao menu principal.");
             return;

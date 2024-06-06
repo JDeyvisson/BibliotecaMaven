@@ -10,15 +10,23 @@ public abstract class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String CPF;
     private String login;
     private String senha;
+    private String sexo;
+    private String nome;
+
 
     public Usuario() {
     }
 
-    public Usuario(String login, String senha) {
+    public Usuario(String nome, String cpf, String sexo, String login, String senha) {
+        this.nome = nome;
+        this.CPF = cpf;
+        this.sexo = sexo;
         this.login = login;
         this.senha = senha;
+
     }
 
     public Long getId() {
@@ -59,4 +67,28 @@ public abstract class Usuario {
     }
 
     public abstract void menu();
+
+    public String getCPF() {
+        return CPF;
+    }
+
+    public void setCPF(String cPF) {
+        CPF = cPF;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }

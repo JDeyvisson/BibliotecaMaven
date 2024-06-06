@@ -2,6 +2,7 @@ package com.biblioteca.servico;
 
 
 
+import com.biblioteca.entidade.Biblioteca;
 import com.biblioteca.entidade.Livro;
 
 import com.biblioteca.repositorio.RepositorioLivro;
@@ -10,8 +11,8 @@ public class ServicoLivro {
     
 
 
-    public void adicionarLivro(RepositorioLivro rLivro, String titulo, String autor) {
-        Livro livro = new Livro(titulo, autor);
+    public void adicionarLivro(RepositorioLivro rLivro, String titulo, String autor, Biblioteca biblioteca) {
+        Livro livro = new Livro(titulo, autor, biblioteca);
         rLivro.adicionarLivro(livro);
     }
 

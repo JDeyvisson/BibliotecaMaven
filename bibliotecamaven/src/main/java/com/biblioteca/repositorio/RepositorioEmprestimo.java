@@ -33,6 +33,8 @@ public class RepositorioEmprestimo {
             em.merge(livro); // Atualizando o estado do livro
             em.getTransaction().commit();
             System.out.println("Empréstimo realizado: " + titulo);
+            System.out.println("Em caso de não entrega até " + emprestimo.getDataDevolucao());
+            System.out.println("Multa por atraso de R$30");
         } else {
             System.out.println("Livro não disponível: " + titulo);
         }
