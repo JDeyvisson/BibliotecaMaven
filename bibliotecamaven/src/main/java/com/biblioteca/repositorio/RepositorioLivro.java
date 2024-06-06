@@ -59,14 +59,15 @@ public class RepositorioLivro {
 
     public void listarLivros() {
         List<Livro> livros = em.createQuery("SELECT l FROM Livro l", Livro.class).getResultList();
-        if(livros != null){
-        for (Livro livro : livros) {
-            System.out.println(livro);
-        }}else{
-        System.out.println("Não existem livros");
-        }
-    }
+        if(livros.isEmpty()){
 
+            System.out.println("Não existem livros");
+        }else{
+                for (Livro livro : livros) {
+                    System.out.println(livro);
+                }           
+            }
+        }
     
     public void adicionarEtiqueta(String etiqueta, Long id){
         Livro livro = buscarLivro(id);

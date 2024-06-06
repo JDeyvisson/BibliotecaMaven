@@ -76,12 +76,13 @@ public class Livro {
 
     @Override
     public String toString() {
-        return "Livro{" +
-                "id=" + id +
-                ", titulo='" + titulo + '\'' +
-                ", autor='" + autor + '\'' +
-                ", disponivel=" + disponivel +
-                '}';
+        return "Livro[" +
+                "Id: " + id +
+                ", Titulo: " + titulo + 
+                ", Autor: " + autor + 
+                ", Biblioteca: " + biblioteca.getNome() +
+                ", Disponivel: " + (disponivel ? "Sim" : "Não") +
+                ']';
     }
 
 

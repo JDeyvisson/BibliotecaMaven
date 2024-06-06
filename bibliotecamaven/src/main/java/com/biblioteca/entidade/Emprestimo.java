@@ -70,12 +70,12 @@ public class Emprestimo {
 
     @Override
     public String toString() {
-        return "Emprestimo{" +
-                "id=" + id +
-                ", usuario=" + usuario +
-                ", livro=" + livro +
-                ", dataEmprestimo=" + dataEmprestimo +
-                ", dataDevolucao=" + dataDevolucao +
-                '}';
+        return "Emprestimo[" +
+                "Id: " + id +
+                ", Usuario: " + usuario.getNome() + "(id: " + usuario.getId() + ")" +
+                ", Livro: " + livro.getTitulo() + "(id: " + livro.getId() + ", Biblioteca: " + livro.getBiblioteca().getNome() + ")" +
+                ", dataEmprestimo: " + dataEmprestimo +
+                ", dataDevolucao: " + dataDevolucao +
+                ']';
     }
 }

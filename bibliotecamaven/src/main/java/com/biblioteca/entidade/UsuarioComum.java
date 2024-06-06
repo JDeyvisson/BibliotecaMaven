@@ -21,7 +21,6 @@ public class UsuarioComum extends Usuario {
     public void menu() {
         System.out.println("1. Consultar Catálogo");
         System.out.println("2. Fazer Empréstimo");
-        System.out.println("3. Fazer Reserva");
-        System.out.println("4. Sair");
+        System.out.println("3. Sair");
     }
 }

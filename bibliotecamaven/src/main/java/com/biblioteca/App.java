@@ -17,7 +17,6 @@ import com.biblioteca.entidade.UsuarioComum;
 import com.biblioteca.repositorio.RepositorioBiblioteca;
 import com.biblioteca.repositorio.RepositorioEmprestimo;
 import com.biblioteca.repositorio.RepositorioLivro;
-import com.biblioteca.repositorio.RepositorioReserva;
 import com.biblioteca.repositorio.RepositorioUsuario;
 import com.biblioteca.servico.ServicoEmprestimo;
 import com.biblioteca.servico.ServicoLivro;
@@ -32,7 +31,6 @@ public class App {
     private ServicoEmprestimo sEmprestimo;
     private RepositorioEmprestimo rEmprestimo;
     private RepositorioUsuario rUsuario;
-    private RepositorioReserva rReserva;
     private RepositorioBiblioteca rBiblioteca;
 
     public App(){
@@ -42,8 +40,6 @@ public class App {
         sEmprestimo = new ServicoEmprestimo();
         rEmprestimo = new RepositorioEmprestimo();
         rUsuario = new RepositorioUsuario();
-        rReserva = new RepositorioReserva();
-
     }
     
     
@@ -142,11 +138,6 @@ public class App {
                         rEmprestimo.emprestarLivro(usuarioComum, titulo);
                         break;
                     case 3:
-                        System.out.println("Título do Livro para reserva: ");
-                        titulo = scanner.nextLine();
-                        rReserva.reservarLivro(usuarioComum, titulo);
-                        break;
-                    case 4:
                         System.out.println("Saindo...");
                         return;
                     default:
