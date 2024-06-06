@@ -58,13 +58,18 @@ public class App {
                             System.out.println("Nome da Biblioteca em que o Livro será criado: ");
                             String biblioteca2 = scanner.nextLine();
                             Biblioteca biblioteca3 = rBiblioteca.buscarBiblioteca(biblioteca2);
+                            if(biblioteca3 != null){
                             System.out.println("Título do Livro: ");
                             String titulo = scanner.nextLine();
                             System.out.println("Autor do Livro: ");
                             String autor = scanner.nextLine();
                             sLivro.adicionarLivro(rLivro, titulo, autor, biblioteca3);
-
-                            break;                                           
+                            break;
+                            }else{
+                                System.out.println("Está biblioteca não existe!");
+                                break;
+                            }
+                                                                   
                         }else{
                             System.out.println("É preciso ter Bibliotecas antes de adicionar Livros!");
                             break;

@@ -23,10 +23,16 @@ public class RepositorioLivro {
     }
 
     public void adicionarLivro(Livro livro) {
-        em.getTransaction().begin();
-        em.persist(livro);
-        em.getTransaction().commit();
-        System.out.println("Livro adicionado: " + livro.getTitulo());
+        String t = livro.getTitulo();
+        Livro l = buscarLivro(t);
+        if(l == null){
+            em.getTransaction().begin();
+            em.persist(livro);
+            em.getTransaction().commit();
+            System.out.println("Livro adicionado: " + livro.getTitulo());          
+        }else{
+            System.out.println("Já existe um livro com esse nome");
+        }
     }
 
 
